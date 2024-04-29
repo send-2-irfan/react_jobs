@@ -5,12 +5,11 @@ import JobsListings from "../components/JobsListings";
 import AllJobs from "../components/ViewAllJobs";
 
 function MainPage() {
-  const home = true;
   return (
     <>
       <Hero />
       <HomeCards />
-      <JobsListings home={home} />
+      <JobsListings isHome={true} />
       <AllJobs />
     </>
   );

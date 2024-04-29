@@ -2,8 +2,15 @@ import React from "react";
 import jobs from "../jobs.json";
 import JobListing from "./JobListing";
 
-function JobsListings({ home }) {
-  const recentJobs = home ? jobs.slice(0, 3) : jobs;
+function JobsListings({ isHome = false, filter }) {
+  let jobListings = isHome
+    ? jobs.slice(0, 3)
+    : filter
+    ? jobs.filter((job) =>
+        job.title.toLowerCase().includes(filter.toLowerCase())
+      )
+    : jobs;
+
   return (
     <section className="bg-blue-50 px-4 py-10">
       <div className="container-xl lg:container m-auto">
@@ -11,7 +18,7 @@ function JobsListings({ home }) {
           Browse Jobs
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {recentJobs.map((job) => {
+          {jobListings.map((job) => {
             return <JobListing key={job.id} job={job} />;
           })}
         </div>
